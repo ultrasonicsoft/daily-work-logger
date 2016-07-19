@@ -1,0 +1,19 @@
+<!--<h3>Login</h3>
+<input [(ngModel)]="userName" placeholder="Enter user name" />
+<input [(ngModel)]="password" type="password" placeholder="Enter password" />
+<button type="submit" (click)="onSubmit()">Login</button>-->
+
+<div class="wrapper">
+    <form class="form-signin">
+        <h1 class="form-signin-heading">Daily Work Logger</h1>
+        <h3 class="form-signin-heading">Login</h3>
+        <input type="text" class="form-control" name="username" [(ngModel)]="userName" placeholder="Enter user name" required=""
+            autofocus="" />
+        <br>
+        <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Password" required="" />
+        <label class="checkbox">
+<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+</label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onSubmit()">Login</button>
+    </form>
+</div>

@@ -17,6 +17,7 @@ export class LoginComponent {
             .toPromise()
             .then(response => {
                 console.log('got response:');
+                console.log(response.json());
                 console.log(response.json().data);
             })
             .catch();
@@ -25,7 +26,7 @@ export class LoginComponent {
     onSubmit() {
         console.log('tryig to call service...');
         
-        this.http.get("http://localhost:3000/login")
+        this.http.get("http://localhost:3000/users")
             .toPromise()
             .then(response => {
                 console.log('got response:');

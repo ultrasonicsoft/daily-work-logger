@@ -1,16 +1,16 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from './login.component';
 import { DataService} from './data.service';
 import { DashboardComponent } from './dashboard.Component';
+import { appRouterProviders } from './app.routes';
+
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
+
 @Component({
     selector: 'my-app',
-    templateUrl : `./app/app.component.html`,
-    directives: [LoginComponent,DashboardComponent]
+    templateUrl: `./app/app.component.html`,
+    directives: [ROUTER_DIRECTIVES]
 })
-export class AppComponent { 
-   isUserLoggedIn=false;
+export class AppComponent {
 
-   onLogin(data:any){
-       this.isUserLoggedIn = <boolean>data.isAuthenticatedUser;
-   }
 }

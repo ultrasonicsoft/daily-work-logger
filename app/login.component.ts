@@ -1,7 +1,8 @@
-import { Component, EventEmitter,Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { DataService} from './data.service';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
 @Component({
     selector: 'login',
@@ -12,23 +13,12 @@ export class LoginComponent {
     userName: string;
     password: string;
     isLoginSuccessful: boolean;
-    // loginEvent = new EventEmitter<any>();
-    @Output() loginEvent: EventEmitter<any> = new EventEmitter();
+    // @Output() loginEvent: EventEmitter<any> = new EventEmitter();
 
-    constructor(private http: Http, private dataService: DataService) {
-        // this.http.get("http://localhost:3000/login")
-        //     .toPromise()
-        //     .then(response => {
-        //         console.log('got response:');
-        //         console.log(response.json());
-        //         console.log(response.json().data);
-        //     })
-        //     .catch();
-
+    constructor(private http: Http, private dataService: DataService, private router: Router) {
     }
 
     onSubmit() {
-
         console.log("trying to login...");
         console.log("user name: " + this.userName);
         console.log("password: " + this.password);
@@ -46,7 +36,8 @@ export class LoginComponent {
                 console.log("Server response: " + data.json());
 
                 var loginStatus = data.json();
-                this.loginEvent.emit(loginStatus);
+
+                this.router.navigateByUrl('/dashboard');
 
                 if (loginStatus.isAuthenticatedUser) {
                     alert("Login successful");
@@ -55,21 +46,5 @@ export class LoginComponent {
                     alert("Login failed");
                 }
             });
-        // console.log('tryig to call service...');
-
-        // this.http.get("http://localhost:3000/users")
-        //     .toPromise()
-        //     .then(response => {
-        //         console.log('got response:');
-        //         console.log(response.json().data);
-        //     })
-        //     .catch();
-        // this.isLoginSuccessful = this.dataService.isAuthenticatedUser(this.userName, this.password);
-        // if (this.isLoginSuccessful) {
-        //     alert("Login success");
-        // }
-        // else {
-        //     alert("Login failed");
-        // }
     }
 }

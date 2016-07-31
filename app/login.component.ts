@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter,Output } from '@angular/core';
 import { DataService} from './data.service';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
@@ -12,6 +12,9 @@ export class LoginComponent {
     userName: string;
     password: string;
     isLoginSuccessful: boolean;
+    // loginEvent = new EventEmitter<any>();
+    @Output() loginEvent: EventEmitter<any> = new EventEmitter();
+
     constructor(private http: Http, private dataService: DataService) {
         // this.http.get("http://localhost:3000/login")
         //     .toPromise()
@@ -43,6 +46,8 @@ export class LoginComponent {
                 console.log("Server response: " + data.json());
 
                 var loginStatus = data.json();
+                this.loginEvent.emit(loginStatus);
+
                 if (loginStatus.isAuthenticatedUser) {
                     alert("Login successful");
                 }

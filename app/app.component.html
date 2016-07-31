@@ -1,1 +1,2 @@
-<login></login>
+<login (loginEvent)="onLogin($event)" *ngIf="!isUserLoggedIn"></login>
+<dashboard *ngIf="isUserLoggedIn"></dashboard>

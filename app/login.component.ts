@@ -10,8 +10,8 @@ import { ROUTER_DIRECTIVES, Router } from '@angular/router';
     providers: [DataService]
 })
 export class LoginComponent {
-    userName: string;
-    password: string;
+    userName: string = "balram";
+    password: string = "chavan";
     isLoginSuccessful: boolean;
     // @Output() loginEvent: EventEmitter<any> = new EventEmitter();
 

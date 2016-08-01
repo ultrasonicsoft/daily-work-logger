@@ -39,12 +39,12 @@ export class LoginComponent {
 
                 this.router.navigateByUrl('/dashboard');
 
-                if (loginStatus.isAuthenticatedUser) {
-                    alert("Login successful");
-                }
-                else {
-                    alert("Login failed");
-                }
+                // if (loginStatus.isAuthenticatedUser) {
+                //     alert("Login successful");
+                // }
+                // else {
+                //     alert("Login failed");
+                // }
             });
     }
 }

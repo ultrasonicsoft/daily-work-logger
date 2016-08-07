@@ -3,6 +3,7 @@ import { DataService} from './data.service';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Event } from './event.model';
+
 declare var scheduler: any;
 
 @Component({
@@ -11,28 +12,29 @@ declare var scheduler: any;
     providers: [DataService]
 })
 export class DashboardComponent {
-    constructor(private http: Http, private dataService: DataService) {
+    static dataService: DataService;
+
+    constructor(dataService: DataService) {
+        DashboardComponent.dataService = dataService;
     }
 
     ngOnInit() {
         console.log('dashboard initialized.');
-
         scheduler.init('scheduler_here', new Date(), "week");
-      
         scheduler.attachEvent("onEventAdded", this.createNewActivityLog);
     }
 
-    private createNewActivityLog(id: any, eventArgs: Object) {
+    createNewActivityLog(id: any, eventArgs: Object) {
         let newEvent = new Event();
-        // console.log("start_date: "+ eventArgs.start_date);
-        // console.log("end_date: "+ eventArgs.end_date);
-        // console.log("text: "+ eventArgs.text);
-        
-        // newEvent.startDate = eventArgs.start_date;
-        // newEvent.startDate = eventArgs.end_date;
-        // newEvent.description = eventArgs.start_date;
-        // console.log(newEvent);
-        
-        alert('event added in ts');
+
+        newEvent.id = (<any>eventArgs).id;
+        newEvent.startDate = (<any>eventArgs).start_date;
+        newEvent.endDate = (<any>eventArgs).end_date;
+        newEvent.description = (<any>eventArgs).text;
+        console.log(newEvent);
+
+        let url = 'http://localhost:3000/events/createNewEvent';
+
+        DashboardComponent.dataService.doPostRequest(url, newEvent);
     }
 }

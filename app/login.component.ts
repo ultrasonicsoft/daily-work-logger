@@ -19,6 +19,7 @@ export class LoginComponent {
     }
 
     onSubmit() {
+        // this.dataService.doPostRequest("",null);
         console.log("trying to login...");
         console.log("user name: " + this.userName);
         console.log("password: " + this.password);
@@ -30,21 +31,11 @@ export class LoginComponent {
 
         this.http.post('http://localhost:3000/login', creds, {
             headers: headers
-        })
-            .subscribe(
+        }).subscribe(
             data => {
                 console.log("Server response: " + data.json());
-
                 var loginStatus = data.json();
-
                 this.router.navigateByUrl('/dashboard');
-
-                // if (loginStatus.isAuthenticatedUser) {
-                //     alert("Login successful");
-                // }
-                // else {
-                //     alert("Login failed");
-                // }
             });
     }
 }

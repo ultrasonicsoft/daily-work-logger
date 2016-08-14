@@ -3,6 +3,7 @@ import { DataService} from '../shared/data.service';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
+import { User } from '../shared/user.model';
 
 @Component({
     selector: 'login',
@@ -26,7 +27,12 @@ export class LoginComponent {
         this.dataService.doLogin(this.userName, this.password)
             .then(user => {
                 console.log('login result: ' + user.isAuthenticatedUser);
-                this.dataService.setLoggedInUser(user);
+                let loggedInUser = new User();
+                loggedInUser.userName = user.loggedInUser.UserName;
+                loggedInUser.userId = user.loggedInUser.Id;
+                loggedInUser.role = user.loggedInUser.RoleId;
+
+                this.dataService.setLoggedInUser(loggedInUser);
                 this.router.navigateByUrl('/dashboard');
             }
             );

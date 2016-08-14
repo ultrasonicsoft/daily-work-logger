@@ -1,4 +1,4 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { User } from './user.model';
@@ -10,14 +10,11 @@ export class DataService {
     password: string;
 
     loggedInUser: User;
-    loginEvent: EventEmitter<any>;
 
-
-    private missionConfirmedSource = new Subject<string>();
-    missionConfirmed$ = this.missionConfirmedSource.asObservable();
+    private userLoginSource = new Subject<string>();
+    userLogin$ = this.userLoginSource.asObservable();
 
     constructor(private http: Http) {
-        this.loginEvent = new EventEmitter<any>();
     }
 
     isUserLoggedIn() {
@@ -57,7 +54,7 @@ export class DataService {
 
     setLoggedInUser(_user: User) {
         this.loggedInUser = _user;
-        this.missionConfirmedSource.next("test");
+        this.userLoginSource.next(_user.userName);
     }
 
     doPostRequest(url: string, body: any): any {

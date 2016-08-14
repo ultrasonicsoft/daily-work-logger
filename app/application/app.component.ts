@@ -15,12 +15,14 @@ import { User} from '../shared/user.model';
 })
 export class AppComponent {
     isUserloggedIn = false;
+    userName:string;
 
     constructor(private dataService: DataService) {
-        dataService.missionConfirmed$.subscribe(
-            astronaut => {
+        dataService.userLogin$.subscribe(
+            userName => {
                 this.isUserloggedIn = true;
-                console.log(`${astronaut} confirmed the mission`);
+                this.userName = userName;
+                console.log(`${userName} logged in`);
             });
     }
 

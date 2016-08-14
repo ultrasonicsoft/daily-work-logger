@@ -73,4 +73,11 @@ export class DataService {
 
         return response;
     }
+
+    getAllUsers() {
+        return this.http.get('http://localhost:3000/users/all')
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
 }

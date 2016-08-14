@@ -1,1 +1,17 @@
-<h2> Messanger</h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">Compose New Message</div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <textarea class="form-control" rows="3" placeholder="Enter your message here" required></textarea>
+                </div>
+                <div class="col-md-3">
+                    <typeahead [list]="fruits" [searchProperty]="'searchText'" [displayProperty]="'name'" [maxSuggestions]="2" (suggestionSelected)="fruitSelected($event)"
+                        placeholder="Begin typing a fruit">
+                    </typeahead>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

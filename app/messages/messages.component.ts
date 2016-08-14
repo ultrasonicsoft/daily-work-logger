@@ -5,6 +5,8 @@ import 'rxjs/add/operator/toPromise';
 import { Typeahead } from '../typeahead/typeahead.component';
 import { User } from '../shared/user.model';
 
+import { Message, MessageStatus } from '../shared/message.model';
+
 @Component({
     selector: 'messages',
     templateUrl: `./app/messages/messages.component.html`,
@@ -38,6 +40,13 @@ export class MessagesComponent {
     }
 
     sendMessage(){
-        alert('messageText: ' + this.messageText);
+        let newMessage = new Message();
+        newMessage.sentOn = new Date();
+        newMessage.fromUserId = this.dataService.getLoggedInUserId();
+        newMessage.toUserId = this.selectedUser.Id;
+        newMessage.status = MessageStatus.New;
+        newMessage.messageText = this.messageText;
+
+        this.dataService.sendNewMessage(newMessage);
     }
 }

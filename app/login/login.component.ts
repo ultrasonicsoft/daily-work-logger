@@ -28,9 +28,9 @@ export class LoginComponent {
             .then(user => {
                 console.log('login result: ' + user.isAuthenticatedUser);
                 let loggedInUser = new User();
-                loggedInUser.userName = user.loggedInUser.UserName;
-                loggedInUser.userId = user.loggedInUser.Id;
-                loggedInUser.role = user.loggedInUser.RoleId;
+                loggedInUser.UserName = user.loggedInUser.UserName;
+                loggedInUser.Id = user.loggedInUser.Id;
+                loggedInUser.RoleId = user.loggedInUser.RoleId;
 
                 this.dataService.setLoggedInUser(loggedInUser);
                 this.router.navigateByUrl('/dashboard');

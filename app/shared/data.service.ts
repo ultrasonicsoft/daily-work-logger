@@ -3,6 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { User } from './user.model';
 import { Subject }    from 'rxjs/Subject';
+import { Message, MessageStatus } from './message.model';
 
 @Injectable()
 export class DataService {
@@ -54,7 +55,7 @@ export class DataService {
 
     setLoggedInUser(_user: User) {
         this.loggedInUser = _user;
-        this.userLoginSource.next(_user.userName);
+        this.userLoginSource.next(_user.UserName);
     }
 
     doPostRequest(url: string, body: any): any {
@@ -79,5 +80,26 @@ export class DataService {
             .toPromise()
             .then(response => response.json())
             .catch(this.handleError);
+    }
+
+    getLoggedInUserId(): number {
+        return this.loggedInUser.Id;
+    }
+
+    sendNewMessage(newMessage: Message): any {
+        let response: any;
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        this.http.post('http://localhost:3000/messages/newMessage', newMessage, {
+            headers: headers
+        }).subscribe(
+            data => {
+                console.log("Server response: " + data.json());
+                alert('message sent.');
+            });
+
+        return response;
     }
 }

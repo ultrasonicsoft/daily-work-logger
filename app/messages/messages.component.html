@@ -1,17 +1,28 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">Compose New Message</div>
-    <div class="panel-body">
-        <form>
-            <div class="form-group">
-                <div class="col-md-6">
-                    <textarea class="form-control" rows="3" placeholder="Enter your message here" required></textarea>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Compose New Message</div>
+        <div class="panel-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" [(ngModel)]="messageText" placeholder="Enter your message here" required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="row">
+                                <typeahead [list]="allUsers" [searchProperty]="'UserName'" [displayProperty]="'UserName'" [maxSuggestions]="10" (suggestionSelected)="onUserSelected($event)"
+                                    placeholder="Select receiver">
+                                </typeahead>
+                            </div>
+                            <div class="row">
+                                <button type="button" (click)="sendMessage()" class="btn btn-primary">Send Message</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <typeahead [list]="allUsers" [searchProperty]="'UserName'" [displayProperty]="'UserName'" [maxSuggestions]="10"
-                        (suggestionSelected)="onUserSelected($event)" placeholder="Select receiver">
-                    </typeahead>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

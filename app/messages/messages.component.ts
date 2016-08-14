@@ -13,6 +13,7 @@ import { User } from '../shared/user.model';
 export class MessagesComponent {
     allUsers: User[];
     selectedUser: User;
+    messageText:string;
 
     constructor(private dataService: DataService) {
     }
@@ -34,5 +35,9 @@ export class MessagesComponent {
             this.selectedUser = user;
             console.log(this.selectedUser);
         }
+    }
+
+    sendMessage(){
+        alert('messageText: ' + this.messageText);
     }
 }

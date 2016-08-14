@@ -7,8 +7,8 @@
                     <textarea class="form-control" rows="3" placeholder="Enter your message here" required></textarea>
                 </div>
                 <div class="col-md-3">
-                    <typeahead [list]="fruits" [searchProperty]="'searchText'" [displayProperty]="'name'" [maxSuggestions]="2" (suggestionSelected)="fruitSelected($event)"
-                        placeholder="Begin typing a fruit">
+                    <typeahead [list]="allUsers" [searchProperty]="'UserName'" [displayProperty]="'UserName'" [maxSuggestions]="10"
+                        (suggestionSelected)="onUserSelected($event)" placeholder="Select receiver">
                     </typeahead>
                 </div>
             </div>

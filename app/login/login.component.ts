@@ -34,8 +34,7 @@ export class LoginComponent {
 
                 this.dataService.setLoggedInUser(loggedInUser);
                 this.router.navigateByUrl('/dashboard');
-            }
-            );
+            });
 
         // let creds = JSON.stringify({ username: this.userName, password: this.password });
 

@@ -3,4 +3,5 @@ export class Event{
     startDate:Date;
     endDate:Date;
     description:string;
+    userId:number;
 }

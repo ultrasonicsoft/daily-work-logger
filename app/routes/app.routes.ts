@@ -1,7 +1,8 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 
-import { DashboardComponent } from './dashboard.component';
-import { LoginComponent } from './login.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { LoginComponent } from '../login/login.component';
+import { MessagesComponent } from '../messages/messages.component';
 
 const routes: RouterConfig = [
   {
@@ -16,6 +17,10 @@ const routes: RouterConfig = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'messages',
+    component: MessagesComponent
   }
 ];
 

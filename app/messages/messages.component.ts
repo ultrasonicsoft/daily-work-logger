@@ -5,20 +5,26 @@ import 'rxjs/add/operator/toPromise';
 import { Typeahead } from '../typeahead/typeahead.component';
 import { User } from '../shared/user.model';
 
-import { Message, MessageStatus } from '../shared/message.model';
+import { Message, MessageStatus, InboxMessage } from '../shared/message.model';
+import {DataTableDirectives} from 'angular2-datatable/datatable';
+import {DatePipe} from "@angular/common";
 
 @Component({
     selector: 'messages',
     templateUrl: `./app/messages/messages.component.html`,
-    directives: [Typeahead]
+    directives: [Typeahead, DataTableDirectives],
+    pipes: [DatePipe]
 })
 export class MessagesComponent {
     allUsers: User[];
     selectedUser: User;
-    messageText:string;
+    messageText: string;
+    inboxMessages: InboxMessage[];
 
     constructor(private dataService: DataService) {
+
     }
+
 
     ngOnInit() {
         console.log('MessagesComponent initialized.');
@@ -30,6 +36,8 @@ export class MessagesComponent {
                 this.allUsers = users;
             })
             .catch(error => console.log(error));
+
+        this.getAllRecievedMessages();
     }
 
     public onUserSelected(user: User) {
@@ -39,7 +47,7 @@ export class MessagesComponent {
         }
     }
 
-    sendMessage(){
+    sendMessage() {
         let newMessage = new Message();
         newMessage.sentOn = new Date();
         newMessage.fromUserId = this.dataService.getLoggedInUserId();
@@ -48,5 +56,24 @@ export class MessagesComponent {
         newMessage.messageText = this.messageText;
 
         this.dataService.sendNewMessage(newMessage);
+    }
+
+    getAllRecievedMessages() {
+        this.dataService
+            .getAllRecievedMessages()
+            .then(messages => {
+                console.log('get response messages: ' + messages);
+                this.inboxMessages = messages;
+            })
+            .catch(error => console.log(error));
+    }
+
+    private sortByWordLength = (a: any) => {
+        return a.name.length;
+    }
+
+    public removeItem(item: any) {
+        // this.data = _.filter(this.data, (elem:any) => elem != item);
+        // console.log("Remove: ", item.email);
     }
 }

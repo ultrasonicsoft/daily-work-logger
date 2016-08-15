@@ -8,5 +8,12 @@ export class Message{
     sentOn:Date;
     fromUserId:number;
     toUserId:number;
-    status:MessageStatus
+    status:MessageStatus;
+}
+
+export class InboxMessage{
+    Id:number;
+    messageText:string;
+    From:string;
+    sentOn:Date;
 }

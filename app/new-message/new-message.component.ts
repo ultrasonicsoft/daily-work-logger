@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Typeahead } from '../typeahead/typeahead.component';
 import { User } from '../shared/user.model';
 
-import { Message, MessageStatus } from '../shared/message.model';
+import { Message } from '../shared/message.model';
 
 @Component({
     selector: 'new-message',
@@ -44,7 +44,7 @@ export class NewMessageComponent {
         newMessage.sentOn = new Date();
         newMessage.fromUserId = this.dataService.getLoggedInUserId();
         newMessage.toUserId = this.selectedUser.Id;
-        newMessage.status = MessageStatus.New;
+        newMessage.isRead = false;
         newMessage.messageText = this.messageText;
 
         this.dataService.sendNewMessage(newMessage);

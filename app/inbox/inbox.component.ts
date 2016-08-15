@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, } from '@angular/core';
 import { DataService} from '../shared/data.service';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Typeahead } from '../typeahead/typeahead.component';
 import { User } from '../shared/user.model';
 
-import { Message, MessageStatus, InboxMessage } from '../shared/message.model';
+import { Message, InboxMessage } from '../shared/message.model';
 import {DataTableDirectives} from 'angular2-datatable/datatable';
-import {DatePipe} from "@angular/common";
+import {DatePipe, NgClass} from "@angular/common";
 
 @Component({
     selector: 'inbox',
     templateUrl: `./app/inbox/inbox.component.html`,
-    directives: [DataTableDirectives],
-    pipes: [DatePipe]
+    directives: [DataTableDirectives, NgClass],
+    pipes: [DatePipe],
+    styles: [`
+    .read {
+      font-weight: bold;;
+    }
+    .unread {
+      font-weight: normal;
+    }
+  `],
 })
 export class InboxComponent {
     inboxMessages: InboxMessage[];

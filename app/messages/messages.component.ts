@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Typeahead } from '../typeahead/typeahead.component';
 import { User } from '../shared/user.model';
 
-import { Message, MessageStatus, InboxMessage } from '../shared/message.model';
+import { Message, InboxMessage } from '../shared/message.model';
 import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {DatePipe} from "@angular/common";
 import { NewMessageComponent } from '../new-message/new-message.component';
@@ -54,7 +54,7 @@ export class MessagesComponent {
         newMessage.sentOn = new Date();
         newMessage.fromUserId = this.dataService.getLoggedInUserId();
         newMessage.toUserId = this.selectedUser.Id;
-        newMessage.status = MessageStatus.New;
+        newMessage.isRead = false;
         newMessage.messageText = this.messageText;
 
         this.dataService.sendNewMessage(newMessage);

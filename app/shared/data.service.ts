@@ -3,7 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { User } from './user.model';
 import { Subject }    from 'rxjs/Subject';
-import { Message, MessageStatus } from './message.model';
+import { Message } from './message.model';
 
 @Injectable()
 export class DataService {

@@ -4,13 +4,13 @@
     <table class="table table-striped" [mfData]="inboxMessages" #mf="mfDataTable" [mfRowsOnPage]="10">
         <thead>
             <tr>
-                <th style="width: 20%">
+                <th style="width: 10%">
                     <mfDefaultSorter by="Sender">Sender</mfDefaultSorter>
                 </th>
                 <th style="width: 10%">
                     <mfDefaultSorter by="Urgency">Urgency</mfDefaultSorter>
                 </th>
-                <th style="width: 40%">
+                <th style="width: 60%">
                     <mfDefaultSorter by="Message">Message</mfDefaultSorter>
                 </th>
                 <th style="width: 20%">
@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let message of mf.data">
+            <tr *ngFor="let message of mf.data" [ngClass]="{read: !message.isRead}">
                 <td>{{message.From}}</td>
                 <td>Low</td>
                 <td>{{message.messageText}}</td>

@@ -9,6 +9,8 @@ import { Message, InboxMessage } from '../shared/message.model';
 import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {DatePipe, NgClass} from "@angular/common";
 
+declare var jQuery:any;
+
 @Component({
     selector: 'inbox',
     templateUrl: `./app/inbox/inbox.component.html`,
@@ -25,6 +27,7 @@ import {DatePipe, NgClass} from "@angular/common";
 })
 export class InboxComponent {
     inboxMessages: InboxMessage[];
+    selectedMessage:InboxMessage;
 
     constructor(private dataService: DataService) {
     }
@@ -50,5 +53,11 @@ export class InboxComponent {
     public removeItem(item: any) {
         // this.data = _.filter(this.data, (elem:any) => elem != item);
         // console.log("Remove: ", item.email);
+    }
+
+    public openMessage(message:InboxMessage){
+        this.selectedMessage = message;
+        (<any>jQuery('#myModal')).modal('show');
+        // alert('message to be opened: ' + message.messageText);
     }
 }

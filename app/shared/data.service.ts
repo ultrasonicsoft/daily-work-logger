@@ -106,7 +106,16 @@ export class DataService {
     getAllRecievedMessages() {
         var userId = this.loggedInUser.Id;
 
-        return this.http.get('http://localhost:3000/messages/all/' + userId)
+        return this.http.get('http://localhost:3000/messages/received/' + userId)
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+
+    getAllSentMessages() {
+        var userId = this.loggedInUser.Id;
+
+        return this.http.get('http://localhost:3000/messages/sent/' + userId)
             .toPromise()
             .then(response => response.json())
             .catch(this.handleError);

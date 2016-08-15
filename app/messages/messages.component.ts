@@ -10,11 +10,12 @@ import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {DatePipe} from "@angular/common";
 import { NewMessageComponent } from '../new-message/new-message.component';
 import { InboxComponent } from '../inbox/inbox.component';
+import { OutboxComponent } from '../outbox/outbox.component';
 
 @Component({
     selector: 'messages',
     templateUrl: `./app/messages/messages.component.html`,
-    directives: [Typeahead, DataTableDirectives,NewMessageComponent, InboxComponent],
+    directives: [Typeahead, DataTableDirectives,NewMessageComponent, InboxComponent, OutboxComponent],
     pipes: [DatePipe]
 })
 export class MessagesComponent {

@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Outbox</div>
+
+    <table class="table table-striped" [mfData]="outboxMessages" #mf="mfDataTable" [mfRowsOnPage]="10">
+        <thead>
+            <tr>
+                <th style="width: 20%">
+                    <mfDefaultSorter by="To">To</mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                    <mfDefaultSorter by="Urgency">Urgency</mfDefaultSorter>
+                </th>
+                <th style="width: 40%">
+                    <mfDefaultSorter by="Message">Message</mfDefaultSorter>
+                </th>
+                <th style="width: 20%">
+                    <mfDefaultSorter by="Date">Date</mfDefaultSorter>
+                </th>
+                <th style="width: 10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let message of mf.data">
+                <td>{{message.To}}</td>
+                <td>Low</td>
+                <td>{{message.messageText}}</td>
+                <td>{{message.sentOn | date:'medium'}}</td>
+                <td>
+                    <button class="btn btn-danger" title="remove" (click)="removeItem(message)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

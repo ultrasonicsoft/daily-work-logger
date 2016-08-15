@@ -9,7 +9,7 @@ import { Message, InboxMessage } from '../shared/message.model';
 import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {DatePipe, NgClass} from "@angular/common";
 
-declare var jQuery:any;
+declare var jQuery: any;
 
 @Component({
     selector: 'inbox',
@@ -27,8 +27,10 @@ declare var jQuery:any;
 })
 export class InboxComponent {
     inboxMessages: InboxMessage[];
-    selectedMessage:InboxMessage;
-
+    selectedMessage: InboxMessage;
+    replyMessageText: string;
+    allowReply = false;
+    
     constructor(private dataService: DataService) {
     }
 
@@ -55,9 +57,19 @@ export class InboxComponent {
         // console.log("Remove: ", item.email);
     }
 
-    public openMessage(message:InboxMessage){
+    public openMessage(message: InboxMessage) {
         this.selectedMessage = message;
         (<any>jQuery('#myModal')).modal('show');
         // alert('message to be opened: ' + message.messageText);
+    }
+
+    public enableReply() {
+        this.allowReply = true;
+    }
+    public reply() {
+        alert('reply text: ' + this.replyMessageText);
+    }
+    public discard(){
+        this.allowReply = false;
     }
 }

@@ -48,7 +48,10 @@ export class NewMessageComponent {
         newMessage.isRead = false;
         newMessage.messageText = this.messageText;
         newMessage.subject = this.subject;
-        
+
         this.dataService.sendNewMessage(newMessage);
+        
+        this.subject = "";
+        this.messageText = "";
     }
 }

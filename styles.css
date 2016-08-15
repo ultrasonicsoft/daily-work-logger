@@ -50,4 +50,9 @@ body {
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
 	}
+};
+
+/*Bootstrap modal popup word wrap issue solution*/
+.modal p {
+    word-wrap: break-word;
 }

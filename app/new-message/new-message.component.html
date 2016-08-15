@@ -5,6 +5,11 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="form-group">
+                        <input class="form-control" placeholder="Subject" maxlength="50" type="text" [(ngModel)]="subject" required>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
                         <textarea class="form-control" rows="5" [(ngModel)]="messageText" placeholder="Enter your message here" required></textarea>
                     </div>
                 </div>
@@ -12,11 +17,11 @@
                     <div class="form-group">
                         <div class="row">
                             <typeahead [list]="allUsers" [searchProperty]="'UserName'" [displayProperty]="'UserName'" [maxSuggestions]="10" (suggestionSelected)="onUserSelected($event)"
-                                placeholder="Select receiver">
+                                placeholder="Select receiver" required>
                             </typeahead>
                         </div>
                         <div class="row">
-                            <button type="button" (click)="sendMessage()" class="btn btn-primary">Send Message</button>
+                            <button type="submit" (click)="sendMessage()" class="btn btn-primary">Send Message</button>
                         </div>
                     </div>
                 </div>

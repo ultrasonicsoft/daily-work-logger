@@ -7,7 +7,7 @@ import { User } from '../shared/user.model';
 
 import { Message, InboxMessage } from '../shared/message.model';
 import {DataTableDirectives} from 'angular2-datatable/datatable';
-import {DatePipe, NgClass} from "@angular/common";
+import {DatePipe, NgClass,SlicePipe} from "@angular/common";
 
 declare var jQuery: any;
 
@@ -15,7 +15,7 @@ declare var jQuery: any;
     selector: 'inbox',
     templateUrl: `./app/inbox/inbox.component.html`,
     directives: [DataTableDirectives, NgClass],
-    pipes: [DatePipe],
+    pipes: [DatePipe,SlicePipe],
     styles: [`
     .read {
       font-weight: bold;;

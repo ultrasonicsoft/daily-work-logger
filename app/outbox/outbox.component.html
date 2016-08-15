@@ -23,7 +23,7 @@
             <tr *ngFor="let message of mf.data">
                 <td>{{message.To}}</td>
                 <td>Low</td>
-                <td>{{message.messageText}}</td>
+                <td>{{message.subject}}</td>
                 <td>{{message.sentOn | date:'medium'}}</td>
                 <td>
                     <button class="btn btn-danger" title="remove" (click)="removeItem(message)">

@@ -8,10 +8,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-                    <h4 class="modal-title" id="myModalLabel">New Message</h4>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 id="myModalLabel">{{selectedMessage?.subject}}</h4>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <p>From: {{selectedMessage?.From}}</p>
+                            <b>From: {{selectedMessage?.From}}</b>
                         </div>
                         <div class="col-md-6">
                             <p>Sent on: {{selectedMessage?.sentOn | date:'medium'}}</p>
@@ -87,7 +91,7 @@
                 <tr *ngFor="let message of mf.data" [ngClass]="{read: !message.isRead}" (click)="openMessage(message)">
                     <td><a href="javascript:void(0);">{{message.From}}</a></td>
                     <td><a href="javascript:void(0);">Low</a></td>
-                    <td><a href="javascript:void(0);">{{message.messageText}}</a></td>
+                    <td><a href="javascript:void(0);">{{message.subject | slice:0:50}}</a></td>
                     <td><a href="javascript:void(0);">{{message.sentOn | date:'medium'}}</a></td>
                     <td>
                         <button class="btn btn-danger" title="remove" (click)="removeItem(message)">

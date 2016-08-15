@@ -1,5 +1,6 @@
 
 export class Message{
+    subject:string;
     messageText:string;
     sentOn:Date;
     fromUserId:number;

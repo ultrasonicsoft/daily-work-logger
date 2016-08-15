@@ -16,6 +16,7 @@ export class NewMessageComponent {
     allUsers: User[];
     selectedUser: User;
     messageText: string;
+    subject:string;
 
     constructor(private dataService: DataService) {
     }
@@ -46,7 +47,8 @@ export class NewMessageComponent {
         newMessage.toUserId = this.selectedUser.Id;
         newMessage.isRead = false;
         newMessage.messageText = this.messageText;
-
+        newMessage.subject = this.subject;
+        
         this.dataService.sendNewMessage(newMessage);
     }
 }

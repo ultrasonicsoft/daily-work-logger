@@ -1,7 +1,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">Compose New Message</div>
     <div class="panel-body">
-        <form>
+        <form (ngSubmit)="sendMessage()">
             <div class="row">
                 <div class="col-md-8">
                     <div class="form-group">
@@ -21,7 +21,7 @@
                             </typeahead>
                         </div>
                         <div class="row">
-                            <button type="submit" (click)="sendMessage()" class="btn btn-primary">Send Message</button>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
                         </div>
                     </div>
                 </div>

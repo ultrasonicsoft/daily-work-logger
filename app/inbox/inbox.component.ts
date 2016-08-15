@@ -30,7 +30,7 @@ export class InboxComponent {
     selectedMessage: InboxMessage;
     replyMessageText: string;
     allowReply = false;
-    
+
     constructor(private dataService: DataService) {
     }
 
@@ -69,7 +69,20 @@ export class InboxComponent {
     public reply() {
         alert('reply text: ' + this.replyMessageText);
     }
-    public discard(){
+    public discard() {
         this.allowReply = false;
+    }
+
+    public closeMessage() {
+        this.dataService
+            .markMessageAsRead(this.selectedMessage.Id)
+            .then((response: any) => {
+                console.log('get response messages: ' + response);
+                this.getAllRecievedMessages();
+            });
+    }
+
+    public refreshInbox() {
+        this.getAllRecievedMessages();
     }
 }

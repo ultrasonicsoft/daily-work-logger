@@ -120,4 +120,16 @@ export class DataService {
             .then(response => response.json())
             .catch(this.handleError);
     }
+
+    markMessageAsRead(_messageId: number): Promise<any> {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        var messageDetails = { messageId: _messageId };
+        return this.http
+            .post('http://localhost:3000/messages/markRead', messageDetails, { headers: headers })
+            .toPromise()
+            .then(res => res.json().data)
+            .catch(this.handleError);
+    }
 }

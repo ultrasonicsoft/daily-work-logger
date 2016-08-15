@@ -46,54 +46,64 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeMessage()">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="panel-heading">Inbox</div>
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-11">
+                Inbox
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-success" title="Refresh" (click)="refreshInbox()">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                      </button>
+            </div>
+        </div>
 
-    <table class="table table-striped" [mfData]="inboxMessages" #mf="mfDataTable" [mfRowsOnPage]="10">
-        <thead>
-            <tr>
-                <th style="width: 10%">
-                    <mfDefaultSorter by="Sender">Sender</mfDefaultSorter>
-                </th>
-                <th style="width: 10%">
-                    <mfDefaultSorter by="Urgency">Urgency</mfDefaultSorter>
-                </th>
-                <th style="width: 60%">
-                    <mfDefaultSorter by="Message">Message</mfDefaultSorter>
-                </th>
-                <th style="width: 20%">
-                    <mfDefaultSorter by="Date">Date</mfDefaultSorter>
-                </th>
-                <th style="width: 10%"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let message of mf.data" [ngClass]="{read: !message.isRead}" (click)="openMessage(message)">
-                <td><a href="javascript:void(0);">{{message.From}}</a></td>
-                <td><a href="javascript:void(0);">Low</a></td>
-                <td><a href="javascript:void(0);">{{message.messageText}}</a></td>
-                <td><a href="javascript:void(0);">{{message.sentOn | date:'medium'}}</a></td>
-                <td>
-                    <button class="btn btn-danger" title="remove" (click)="removeItem(message)">
+        <table class="table table-striped" [mfData]="inboxMessages" #mf="mfDataTable" [mfRowsOnPage]="10">
+            <thead>
+                <tr>
+                    <th style="width: 10%">
+                        <mfDefaultSorter by="Sender">Sender</mfDefaultSorter>
+                    </th>
+                    <th style="width: 10%">
+                        <mfDefaultSorter by="Urgency">Urgency</mfDefaultSorter>
+                    </th>
+                    <th style="width: 60%">
+                        <mfDefaultSorter by="Message">Message</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="Date">Date</mfDefaultSorter>
+                    </th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let message of mf.data" [ngClass]="{read: !message.isRead}" (click)="openMessage(message)">
+                    <td><a href="javascript:void(0);">{{message.From}}</a></td>
+                    <td><a href="javascript:void(0);">Low</a></td>
+                    <td><a href="javascript:void(0);">{{message.messageText}}</a></td>
+                    <td><a href="javascript:void(0);">{{message.sentOn | date:'medium'}}</a></td>
+                    <td>
+                        <button class="btn btn-danger" title="remove" (click)="removeItem(message)">
                         <span class="glyphicon glyphicon-remove"></span>
                       </button>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="5">
-                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
 
 
-</div>
+    </div>

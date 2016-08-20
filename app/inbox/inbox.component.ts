@@ -27,6 +27,7 @@ declare var jQuery: any;
 })
 export class InboxComponent {
     inboxMessages: InboxMessage[];
+    messageThread: InboxMessage[];
     selectedMessage: InboxMessage;
     replyMessageText: string;
     allowReply = false;
@@ -58,6 +59,15 @@ export class InboxComponent {
     }
 
     public openMessage(message: InboxMessage) {
+
+        this.dataService
+            .getMessageThread(message.Id)
+            .then(messages => {
+                console.log('get response messages thread: ' + messages);
+                this.messageThread = messages;
+            })
+            .catch(error => console.log(error));
+
         this.selectedMessage = message;
         (<any>jQuery('#myModal')).modal('show');
         // alert('message to be opened: ' + message.messageText);
@@ -67,8 +77,13 @@ export class InboxComponent {
         this.allowReply = true;
     }
     public reply() {
-        alert('reply text: ' + this.replyMessageText);
+        let replyMessage = new Message();
+        replyMessage.Id = this.selectedMessage.Id;
+        replyMessage.messageText = this.replyMessageText;
+        replyMessage.sentOn = new Date();
+        this.dataService.sendReply(replyMessage);
     }
+
     public discard() {
         this.allowReply = false;
     }

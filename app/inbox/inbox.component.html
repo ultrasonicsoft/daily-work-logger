@@ -23,11 +23,35 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <div class="container">
-
-                        <div class="row">
-                            <p>{{selectedMessage?.messageText}}</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table style="font-size:small; width:100%;">
+                                <tr *ngFor="let message of messageThread">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <b>From: {{message?.From}}</b>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>Sent on: {{message?.sentOn | date:'medium'}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <p>{{message?.messageText}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                            </table>
                         </div>
+                        <!--<div class="row">
+                            <p>{{selectedMessage?.messageText}}</p>
+                        </div>-->
                     </div>
 
                     <div class="row">

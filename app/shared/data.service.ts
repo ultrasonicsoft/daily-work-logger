@@ -112,6 +112,13 @@ export class DataService {
             .catch(this.handleError);
     }
 
+    getMessageThread(messageId: number) {
+        return this.http.get('http://localhost:3000/messages/messageThread/' + messageId)
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+
     getAllSentMessages() {
         var userId = this.loggedInUser.Id;
 
@@ -128,6 +135,17 @@ export class DataService {
         var messageDetails = { messageId: _messageId };
         return this.http
             .post('http://localhost:3000/messages/markRead', messageDetails, { headers: headers })
+            .toPromise()
+            .then(res => res.json().data)
+            .catch(this.handleError);
+    }
+
+    sendReply(_replyMessage: Message): Promise<any> {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+            .post('http://localhost:3000/messages/reply', _replyMessage, { headers: headers })
             .toPromise()
             .then(res => res.json().data)
             .catch(this.handleError);

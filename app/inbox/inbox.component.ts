@@ -81,7 +81,16 @@ export class InboxComponent {
         replyMessage.Id = this.selectedMessage.Id;
         replyMessage.messageText = this.replyMessageText;
         replyMessage.sentOn = new Date();
-        this.dataService.sendReply(replyMessage);
+        replyMessage.fromUserId = this.dataService.loggedInUser.Id;
+        replyMessage.toUserId = this.selectedMessage.fromUserId;
+        
+        this.dataService.sendReply(replyMessage).
+        then((response: any) => {
+                console.log('reply sent: ' );
+                this.getAllRecievedMessages();
+            });
+        this.replyMessageText = '';
+        
     }
 
     public discard() {

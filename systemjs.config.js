@@ -12,7 +12,7 @@
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     'rxjs': 'node_modules/rxjs',
     'angular2-datatable': 'node_modules/angular2-datatable',
-    'lodash': 'https://npmcdn.com/lodash@4.6.1/lodash.js'
+    'lodash': 'https://unpkg.com/lodash@4.6.1/lodash.js'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
